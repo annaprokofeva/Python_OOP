@@ -1,21 +1,16 @@
-# src/lab03/models.py
-
 import sys
+
 import os
 
-# Добавляем пути к папкам lab01 и lab02
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lab01'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lab02'))
 
-# Импортируем базовый класс из ЛР-1
 from model import Student
 
 
 class BachelorStudent(Student):
-    """Бакалавр — учится 4 года, есть специализация и практика"""
     
     def __init__(self, name, age, course, grade, specialization, has_practice=False):
-        # super() вызывает конструктор родительского класса (Student из ЛР-1)
         super().__init__(name, age, course, grade)
         self._specialization = specialization
         self._has_practice = has_practice
@@ -29,7 +24,6 @@ class BachelorStudent(Student):
         return self._has_practice
     
     def complete_practice(self):
-        """Завершить производственную практику"""
         if not self._is_active:
             raise Exception("Отчисленный студент не может пройти практику")
         if self._has_practice:
@@ -38,7 +32,6 @@ class BachelorStudent(Student):
         return f"{self._name} успешно прошел производственную практику!"
     
     def upgrade_course(self):
-        """Перевод на следующий курс (бакалавр учится до 4 курса)"""
         if not self._is_active:
             raise Exception("Нельзя перевести отчисленного студента")
         if self._course >= 4:
@@ -54,7 +47,6 @@ class BachelorStudent(Student):
 
 
 class MasterStudent(Student):
-    """Магистр — есть тема исследования и диссертация"""
     
     def __init__(self, name, age, course, grade, research_topic, has_thesis=False):
         super().__init__(name, age, course, grade)
@@ -70,7 +62,6 @@ class MasterStudent(Student):
         return self._has_thesis
     
     def defend_thesis(self):
-        """Защитить диссертацию"""
         if not self._is_active:
             raise Exception("Отчисленный студент не может защищаться")
         if self._has_thesis:
@@ -79,7 +70,6 @@ class MasterStudent(Student):
         return f"{self._name} блестяще защитил диссертацию на тему '{self._research_topic}'!"
     
     def grant_scholarship(self):
-        """Магистры получают стипендию при оценке > 4.2 (выше требований)"""
         if not self._is_active:
             return False
         return self._grade > 4.2  # Более строгое требование
@@ -119,7 +109,7 @@ class PhDStudent(Student):
         """Аспиранты получают стипендию всегда (если активны)"""
         if not self._is_active:
             return False
-        return True  # Аспиранты всегда получают стипендию
+        return True 
     
     def __str__(self):
         parent_str = super().__str__()
