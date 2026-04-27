@@ -1,6 +1,12 @@
 from typing import List, Optional, Callable
 from model import Student
 
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lab01'))
+
+from model import Student
+
 
 class StudentGroup:
     

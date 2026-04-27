@@ -26,3 +26,28 @@ def validate_course(course):
     if course < 1 or course > 6:
         raise ValueError(f"Курс должен быть от 1 до 6, получен {course}")
     return course
+
+# lab01/validate.py (добавить в конец файла)
+
+def validate_specialization(specialization: str):
+    """Проверяет специализацию бакалавра"""
+    if not isinstance(specialization, str):
+        raise TypeError(f"Специализация должна быть строкой, получен {type(specialization).__name__}")
+    if not specialization.strip():
+        raise ValueError("Специализация не может быть пустой")
+
+
+def validate_topic(topic: str):
+    """Проверяет тему исследования магистра"""
+    if not isinstance(topic, str):
+        raise TypeError(f"Тема исследования должна быть строкой, получен {type(topic).__name__}")
+    if not topic.strip():
+        raise ValueError("Тема исследования не может быть пустой")
+
+
+def validate_area(area: str):
+    """Проверяет область исследований аспиранта"""
+    if not isinstance(area, str):
+        raise TypeError(f"Область исследований должна быть строкой, получен {type(area).__name__}")
+    if not area.strip():
+        raise ValueError("Область исследований не может быть пустой")
