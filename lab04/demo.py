@@ -1,5 +1,3 @@
-# lab04/demo.py
-
 import sys
 import os
 
@@ -9,10 +7,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../lab03'))
 from models import BachelorStudent, MasterStudent, PhDStudent, Student
 from interfaces import Printable, Comparable
 
-
-# ------------------------------------------------------------
-# Простая коллекция для демонстрации (встроена в demo.py)
-# ------------------------------------------------------------
 class StudentCollection:
     def __init__(self, name: str = "Группа"):
         self._name = name
@@ -49,9 +43,7 @@ class StudentCollection:
         return res
 
 
-# ------------------------------------------------------------
 # Вспомогательные функции для работы с интерфейсами
-# ------------------------------------------------------------
 def filter_by_interface(collection, interface):
     """Фильтрация коллекции по интерфейсу"""
     new_coll = StudentCollection(f"{collection._name} (фильтр)")
@@ -76,10 +68,7 @@ def print_separator(title: str = ""):
         print(f" {title} ".center(60, '='))
     print(f"{'=' * 60}")
 
-
-# ------------------------------------------------------------
 # Сценарий 1: Вызов методов интерфейса
-# ------------------------------------------------------------
 def scenario_1():
     print_separator("СЦЕНАРИЙ 1: ВЫЗОВ МЕТОДОВ ИНТЕРФЕЙСА")
 
@@ -95,10 +84,7 @@ def scenario_1():
         print(f"Стипендия: {s.grant_scholarship()}")
         print()
 
-
-# ------------------------------------------------------------
 # Сценарий 2: Полиморфная функция через интерфейс
-# ------------------------------------------------------------
 def scenario_2():
     print_separator("СЦЕНАРИЙ 2: ПОЛИМОРФНАЯ ФУНКЦИЯ")
 
@@ -117,10 +103,7 @@ def scenario_2():
     for obj in objects[:3]:
         print(f"{obj.name}: Printable? {isinstance(obj, Printable)}, Comparable? {isinstance(obj, Comparable)}")
 
-
-# ------------------------------------------------------------
 # Сценарий 3: Коллекция и фильтрация
-# ------------------------------------------------------------
 def scenario_3():
     print_separator("СЦЕНАРИЙ 3: КОЛЛЕКЦИЯ И ФИЛЬТРАЦИЯ")
 
@@ -143,16 +126,11 @@ def scenario_3():
     group.sort_by_grade()
     print(group)
 
-    # Сравнение двух студентов
     s1 = BachelorStudent("Студент1", 20, 2, 4.0, "Тест")
     s2 = BachelorStudent("Студент2", 20, 2, 4.5, "Тест")
     cmp = s1.compare_to(s2)
     print(f"\ns1.compare_to(s2) = {cmp} ({'меньше' if cmp < 0 else 'больше' if cmp > 0 else 'равно'})")
 
-
-# ------------------------------------------------------------
-# Запуск
-# ------------------------------------------------------------
 if __name__ == "__main__":
     scenario_1()
     scenario_2()
